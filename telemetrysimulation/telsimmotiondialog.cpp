@@ -37,10 +37,8 @@ void telsimmotionDialog::onmainTimeLoop()
     double alttoFirstWin = ui -> dsAlt -> value();
     QString impmettoFirstWin = ui -> mphLabel -> text();
     double vspdtoFirstWin = ui ->mSecond -> value();
-
-
     QString positiontoFirstWindow = writeback;
-    emit toFirstWindow(positiontoFirstWindow, hdgtoFirstWin, speedtoFirstWin, alttoFirstWin, impmettoFirstWin, vspdtoFirstWin);
+    emit toFirstWindow(positiontoFirstWindow, hdgtoFirstWin, speedtoFirstWin, alttoFirstWin, vspdtoFirstWin);
     }
 
 }
@@ -48,7 +46,6 @@ void telsimmotionDialog::onmainTimeLoop()
 void telsimmotionDialog::toSecWindow(QString latlonFromTelSim)
 {
     ui -> LatLon -> setText(latlonFromTelSim);
-
 }
 
 
@@ -60,13 +57,25 @@ telsimmotionDialog::~telsimmotionDialog()
 void telsimmotionDialog::on_startMotion_clicked()
 {
     mainTimer.start();
-  //  frstwin = new telemetrysimuDialog(this);
- //   connect(this,&telsimmotionDialog::toFirstWindow,frstwin,&telsimmotionDialog::toFirstWindow); // ///
-
-
 }
 
 void telsimmotionDialog::on_stopMotion_clicked()
 {
     mainTimer.stop();
+}
+
+void telsimmotionDialog::on_metricButton_clicked()
+{
+    ui->mphLabel->setText("KPH To Telsim Window");
+    ui -> altLabel -> setText("METERS To Telsim Window");
+    ui -> fsLabel -> setText("M/S To Telsim Window");
+    emit metButtonPressed();
+}
+
+void telsimmotionDialog::on_imperialButton_clicked()
+{
+    ui->mphLabel->setText("MPH To Telsim Window");
+    ui -> altLabel -> setText("FEET To Telsim Window");
+    ui -> fsLabel -> setText("F/S To Telsim Window");
+    emit impButtonPressed();
 }

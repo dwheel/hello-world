@@ -20,16 +20,17 @@ public:
 private:
     Ui::telemetrysimuDialog *ui;
     QTimer mainTimer;
-    telsimmotionDialog *dlg;
- //   telemetrysimuDialog *frstwin;
+    telsimmotionDialog *motionWindow;
+    telemetrysimuDialog *simWindow;
 
 
 protected slots:
         void onmainTimeLoop();
 
 public slots:
-  //      void toFirstWindow(QString position, double hdg, double speed, double alt, QString impmet, double vspd); // //////////////////
-
+        void fromSecondWindow(QString position, double hdg, double speed, double alt, double vspd); // //////////////////
+        void changeToMetricText(); // from mainwindow metButtonPressed()
+        void changeToImperialText(); // from mainwindow impButtonPressed()
 
 private slots:
         void on_startMotion_clicked();
